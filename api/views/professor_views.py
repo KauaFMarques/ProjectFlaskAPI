@@ -53,7 +53,7 @@ class ProfessorDetail(Resource):
         professor_bd = professor_service.listar_professor_id(id)
         if professor_bd is None:
             return make_response(jsonify("Professor não encontrada"), 404)
-        professor_service.remover_professor(professor_bd)
+        professor_service.remove_professor(professor_bd)
         return make_response('Professor excluído com sucesso', 204)
 
 api.add_resource(ProfessorList, '/professores')
