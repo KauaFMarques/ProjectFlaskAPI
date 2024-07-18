@@ -18,8 +18,8 @@ class FormacaoSchema(ma.SQLAlchemyAutoSchema):
 
     _links = ma.Hyperlinks(
         {
-            "get": ma.URLFor("formacaodetail", id="<id>"),
-            "put": ma.URLFor("formacaodetail", id="<id>"),
-            "delete": ma.URLFor("formacaodetail", id="<id>")
+            "get": ma.URLFor('cursodetail', values={'id': '<id>'}),
+            "put": ma.URLFor('cursodetail', values={'id': '<id>'}),
+            "delete": ma.URLFor('cursodetail', values={'id': '<id>'})
         }
     )

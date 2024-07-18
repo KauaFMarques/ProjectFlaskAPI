@@ -15,8 +15,9 @@ class CursoSchema(ma.SQLAlchemyAutoSchema):
 
     _links = ma.Hyperlinks(
         {
-            "get":ma.URLFor("cursodetail", id="<id>"),
-            "put":ma.URLFor("cursodetail", id="<id>"),
-            "delete":ma.URLFor("cursodetail", id="<id>")
+            "get": ma.URLFor('cursodetail', values={'id': '<id>'}),
+            "put": ma.URLFor('cursodetail', values={'id': '<id>'}),
+            "delete": ma.URLFor('cursodetail', values={'id': '<id>'})
         }
     )
+

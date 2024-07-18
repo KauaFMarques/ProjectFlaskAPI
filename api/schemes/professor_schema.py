@@ -12,10 +12,4 @@ class ProfessorSchema(ma.SQLAlchemyAutoSchema):
     nome = fields.String(required=True)
     idade = fields.Integer(required=True)
 
-    _links = ma.Hyperlinks(
-        {
-            "get": ma.URLFor("professordetail", id="<id>"),
-            "put": ma.URLFor("professordetail", id="<id>"),
-            "delete": ma.URLFor("professordetail", id="<id>")
-        }
-    )
+    _links = ma.Hyperlinks({         "get": ma.URLFor('cursodetail', values={'id': '<id>'}),         "put": ma.URLFor('cursodetail', values={'id': '<id>'}),         "delete": ma.URLFor('cursodetail', values={'id': '<id>'})     })
