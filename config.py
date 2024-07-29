@@ -7,3 +7,4 @@ DB = 'api_flask'
 
 SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{USERNAME}:{PASSWORD}@{SERVER}/{DB}?charset=utf8mb4'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
+SECRET_KEY="aplicacao_flask"
