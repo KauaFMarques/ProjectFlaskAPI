@@ -6,7 +6,7 @@ from ..entidades import curso
 from ..services import curso_service, formacao_service
 from ..paginate import paginate
 from ..models.curso_model import Curso
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required,get_jwt
 
 class CursoList(Resource):
     @jwt_required()
@@ -16,6 +16,10 @@ class CursoList(Resource):
 
     @jwt_required()
     def post(self):
+        clains=get_jwt()
+        if clains["roles"]!="admin":
+            return make_response(jsonify(messagem="nao permitido esse recurso, apenas admins"),403)
+
         cs = curso_schema.CursoSchema()
         validate = cs.validate(request.json)
         if validate:
