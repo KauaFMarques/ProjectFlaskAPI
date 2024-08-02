@@ -6,21 +6,17 @@ from ..entidades import curso
 from ..services import curso_service, formacao_service
 from ..paginate import paginate
 from ..models.curso_model import Curso
-from flask_jwt_extended import jwt_required,get_jwt
-from ..decorator import admin_required
+from flask_jwt_extended import jwt_required, get_jwt
+from ..decorator import admin_required, api_key_required
 
 class CursoList(Resource):
-    @jwt_required()
+    @api_key_required
     def get(self):
         cs = curso_schema.CursoSchema(many=True)
         return paginate(Curso,cs)
 
     @admin_required
     def post(self):
-        claims=get_jwt()
-        if claims["roles"]!="admin":
-            return make_response(jsonify(messagem="nao permitido esse recurso, apenas admins"),403)
-
         cs = curso_schema.CursoSchema()
         validate = cs.validate(request.json)
         if validate:
@@ -41,6 +37,7 @@ class CursoList(Resource):
             return make_response(x, 201)
 
 class CursoDetail(Resource):
+
     @jwt_required()
     def get(self, id):
         curso = curso_service.listar_curso_id(id)
